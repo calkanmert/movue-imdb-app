@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center">
                 <form>
-                    <div class="bg-white mt-5 rounded shadow-sm d-flex justify-content-between p-3 align-items-center" style="width: 700px; height: 60px;">
+                    <div class="bg-white mt-5 rounded shadow-sm d-flex justify-content-between bar p-3 align-items-center" style="width: 700px; height: 60px;">
                         <input type="text" v-model="movie" class="form-control" style="width: 100%" placeholder="Enter Movie or series">
                         <button @click.prevent="search" class="btn text-light" style="margin-left: 15px;background: #000">Search</button>
                     </div>
@@ -20,6 +20,7 @@ import { mapGetters } from 'vuex';
 export default {
     data() {
         return {
+            pageTitle: 'Search - Movue',
             movie: this.$route.params.searchedMovie ? this.$route.params.searchedMovie : '',
         };
     },
@@ -31,5 +32,16 @@ export default {
     computed: {
 
     },
+    created() {
+        document.title = this.pageTitle;
+    },
 };
 </script>
+
+<style scoped>
+    @media(max-width: 600px) {
+        .bar {
+            width: 100% !important;
+        }
+    }
+</style>

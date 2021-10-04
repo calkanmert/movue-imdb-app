@@ -78,6 +78,11 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    data() {
+        return {
+            pageTitle: 'Movue',
+        };
+    },
     computed: {
         ...mapGetters(['getMovie', 'getFavoriteMovie']),
     },
@@ -86,6 +91,11 @@ export default {
     },
     created() {
         this.$store.dispatch('fetchMovie', this.$route.params.id);
+    },
+    watch: {
+        getMovie() {
+            document.title = `${this.getMovie.Title} - ${this.pageTitle}`;
+        },
     },
     beforeRouteLeave(to, from, next) {
         this.$store.commit('updateLoadingStatus', false);

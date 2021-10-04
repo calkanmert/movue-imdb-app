@@ -14,8 +14,8 @@
                                 <small><strong>Year:</strong> {{ movie.Year }}</small>
                             </div>
                             <router-link :to="{ name: 'movie', params: { id: movie.imdbID } }" tag="button" class="btn text-light btn-sm mt-3" style="background: #000">Show Details</router-link>
-                            <a :href="`https://www.imdb.com/title/${movie.imdbID}`" target="_blank"><button class="btn text-light btn-sm mt-3" style="background: #000">IMDB</button></a>
-                            <button v-if="getFavoriteMovie(movie.imdbID)" @click="removeFavoriteMovie(movie)" class="btn text-light btn-sm mt-3" style="background: #ce181e">Remove from Favorites</button>
+                            <a :href="`https://www.imdb.com/title/${movie.imdbID}`" target="_blank"><button class="btn text-light btn-sm mt-3" style="background: #000;  margin-left: 5px">IMDB</button></a>
+                            <button v-if="getFavoriteMovie(movie.imdbID)" @click="removeFavoriteMovie(movie)" class="btn text-light btn-sm mt-3" style="background: #ce181e;  margin-left: 5px">Remove from Favorites</button>
                         </div>
                     </div>
                 </div>
@@ -28,11 +28,19 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    data() {
+        return {
+            pageTitle: 'My Favorites - Movue',
+        };
+    },
     computed: {
         ...mapGetters(['getFavoriteMovieList', 'getFavoriteMovie']),
     },
     methods: {
         ...mapActions(['removeFavoriteMovie']),
+    },
+    created() {
+        document.title = this.pageTitle;
     },
 };
 </script>
